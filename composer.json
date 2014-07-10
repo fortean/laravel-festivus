@@ -1,0 +1,28 @@
+{
+    "name": "fortean/laravel-festivus",
+    "type": "library",
+    "description": "Festivus: A Guzzle-based REST client for Laravel with packaged service descriptions.",
+    "keywords": ["laravel", "festivus", "guzzle", "rest"],
+    "homepage": "https://github.com/fortean/laravel-festivus",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bruce Walter",
+            "email": "walter@fortean.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3"
+    },
+    "require-dev": {
+        "illuminate/support": "~4"
+    },    
+    "require-all": true,
+    "autoload": {    
+        "psr-0": {
+            "Fortean\\Festivus\\": "src/"
+        }
+    },    
+    "minimum-stability": "stable"
+}
