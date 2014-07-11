@@ -13,7 +13,9 @@
         }
     ],
     "require": {
-        "php": ">=5.3"
+        "php": ">=5.4",
+        "guzzlehttp/guzzle": "4.*",
+        "guzzlehttp/guzzle-services": "0.3.0"
     },
     "require-dev": {
         "illuminate/support": "~4"

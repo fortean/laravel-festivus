@@ -9,7 +9,7 @@ class FestivusServiceProvider extends ServiceProvider {
 	 *
 	 * @var bool
 	 */
-	protected $defer = false;
+	protected $defer = true;
 
 	/**
 	 * Bootstrap the application events.
@@ -28,7 +28,10 @@ class FestivusServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		//
+		$this->app->bindShared('festivus', function($app)
+		{
+			return new Festivus();
+		});
 	}
 
 	/**
@@ -38,7 +41,7 @@ class FestivusServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array();
+		return array('festivus');
 	}
 
 }
