@@ -18,7 +18,11 @@ class FestivusServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
+		// Setup the standard package configuration
 		$this->package('fortean/laravel-festivus');
+
+		// Add a specific config namespace pointing at the override config directory
+		$this->app['config']->addNamespace('laravel-festivus-cascade', app_path().'/config/packages/fortean/laravel-festivus');
 	}
 
 	/**

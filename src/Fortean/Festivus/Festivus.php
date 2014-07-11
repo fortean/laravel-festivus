@@ -22,8 +22,11 @@ class Festivus {
 	 */
 	public function client($service = null)
 	{
-		// Load the requested service description
-		$config = Config::get('laravel-festivus::'.$service, null);
+		/*
+		 * Load the requested service description... First check the cascade namespace, then the normal package namespace.
+		 * This allows us to have package configs in the override that do not exist in the vendor config.
+		 */
+		$config = ($config = Config::get('laravel-festivus-cascade::'.$service, null)) ? $config : Config::get('laravel-festivus::'.$service, null);
 
 		// Sanity check the configuration
 		if (!is_array($config) || !isset($config['service']))
