@@ -10,13 +10,16 @@
 
 return [
 
-	'config' => [
+	'client' => [
+	],
+
+	'service' => [
 		'defaults' => [
 			'foo' => 'bar',
 		],
 	],
 
-	'service' => [
+	'description' => [
 		'name' => 'httpbin(1): HTTP Request & Response Service',
 		'apiVersion' => '1',
 		'description' => 'Testing an HTTP Library can become difficult sometimes. Postbin is fantastic for testing POST requests, but not much else. This exists to cover all kinds of HTTP scenarios. Additional endpoints are being considered. All endpoint responses are JSON-encoded.',
@@ -24,7 +27,7 @@ return [
 		'operations' => [
 			'testing' => [
 				'httpMethod' => 'GET',
-				'uri' => '/get',
+				'uri' => 'get',
 				'responseModel' => 'getResponse',
 				'parameters' => [
 					'foo' => [

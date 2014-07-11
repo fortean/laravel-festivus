@@ -34,20 +34,24 @@ class Festivus {
 			throw new OutOfBoundsException('Service configuration file is invalid or does not exist: '.$service);
 		}
 
-		// The config section is optional
-		$config['config'] = (isset($config['config']) && is_array($config['config'])) ? $config['config'] : [];
+		// The client and service sections are optional
+		$config['client'] = (isset($config['client']) && is_array($config['client'])) ? $config['client'] : [];
+		$config['service'] = (isset($config['service']) && is_array($config['service'])) ? $config['service'] : [];
+
+		// Provide an XML parsing ResponseLocation that acts like Httpful
+		$config['service']['response_locations']['xml-festivus'] = new FestivusXmlResponseLocation('xml-festivus');
 
 		// Get the core Guzzle client
-		$client = new Client();
+		$client = new Client($config['client']);
 
 		// Attach our event subscriber to it
 		$client->getEmitter()->attach(new FestivusEventSubscriber);
 
 		// Build a service description from the config file
-		$description = new Description($config['service']);
+		$description = new Description($config['description']);
 
 		// Return a service client
-		return new GuzzleClient($client, $description, $config['config']);
+		return new GuzzleClient($client, $description, $config['service']);
 	}
 
 }
