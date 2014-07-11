@@ -24,7 +24,7 @@ class FestivusXmlResponseLocation extends AbstractLocation
 
 	public function after(GuzzleCommandInterface $command, ResponseInterface $response, Parameter $model, &$result, array $context = [])
 	{
-		$result = ($xml = simplexml_load_string($this->body, null, 0, '')) ? [$xml->getName() => $xml] : []
+		$result = ($xml = simplexml_load_string($this->body, null, 0, '')) ? [$xml->getName() => $xml] : [];
 		$this->body = null;
 	}
 
