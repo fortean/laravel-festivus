@@ -16,6 +16,16 @@ return [
 	'service' => [
 		'defaults' => [
 			'foo' => 'bar',
+			'bat' => 'baz',
+		],
+	],
+
+	'parameters' => [
+		'global' => [
+			'bat' => [
+				'type' => 'string',
+				'location' => 'query'
+			],
 		],
 	],
 
@@ -31,9 +41,10 @@ return [
 				'responseModel' => 'getResponse',
 				'parameters' => [
 					'foo' => [
-					    'type' => 'string',
-					    'location' => 'query'
+						'type' => 'string',
+						'location' => 'query'
 					],
+					'bat' => 'global:bat',
 				],
 			],
 		],
