@@ -41,6 +41,7 @@ class Festivus {
 
 		// Provide an XML parsing ResponseLocation that acts like Httpful
 		$config['service']['response_locations']['xml-festivus'] = new FestivusXmlResponseLocation('xml-festivus');
+		$config['service']['response_locations']['xml-array'] = new PHPArrayXmlResponseLocation('xml-array');
 
 		// Get the core Guzzle client
 		$client = new Client($config['client']);
