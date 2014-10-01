@@ -29,7 +29,7 @@ class PHPArrayXmlResponseLocation extends AbstractLocation
         array $context = []
     ) {
         $body = $this->stripBom($response->getBody());
-        $simple = ($xml = simplexml_load_string($body, null, 0, '')) ? [$xml->getName() => $xml] : [];
+        $simple = ($xml = simplexml_load_string($body, null, LIBXML_NOCDATA)) ? [$xml->getName() => $xml] : [];
         $this->flatXML = json_decode(json_encode((array)$simple), 1);
     }
 
