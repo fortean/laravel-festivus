@@ -15,6 +15,6 @@ class Festivus extends Facade {
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'festivus'; }
+    protected static function getFacadeAccessor() { return 'Festivus'; }
 
 }
