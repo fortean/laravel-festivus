@@ -1,6 +1,6 @@
-# Festivus for the REST of us... A Guzzle-based REST client for Laravel 4 with packaged service descriptions.
+# Festivus for the REST of us... A Guzzle-based REST client for Laravel 5 with packaged service descriptions.
 
-Festivus provides a Laravel 4 Facade wrapping Guzzle with helpers that make it drop-dead simple to use.
+Festivus provides a Laravel 5 Facade wrapping Guzzle with helpers that make it drop-dead simple to use.
 Eloquent models can be hydrated from service calls and APIs are defined by service descriptions.  What
 more could you ask for?  An aluminum pole?
 
@@ -16,7 +16,7 @@ Add laravel-festivus to your composer.json file:
 
 ```
 "require": {
-  "laravel-festivus": "4.*"
+  "laravel-festivus": "5.0.*"
 }
 ```
 

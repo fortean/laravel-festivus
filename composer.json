@@ -14,13 +14,9 @@
     ],
     "require": {
         "php": ">=5.4",
-        "guzzlehttp/guzzle": "4.*",
-        "guzzlehttp/command": "0.4.0",
-        "guzzlehttp/guzzle-services": "0.3.0"
+        "illuminate/support": "5.0.*",
+        "guzzlehttp/guzzle-services": "0.5.*"
     },
-    "require-dev": {
-        "illuminate/support": "~4"
-    },    
     "require-all": true,
     "autoload": {    
         "psr-0": {

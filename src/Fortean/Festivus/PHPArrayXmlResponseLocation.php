@@ -11,7 +11,7 @@
 use GuzzleHttp\Command\Guzzle\ResponseLocation\AbstractLocation;
 use GuzzleHttp\Command\Guzzle\Parameter;
 use GuzzleHttp\Message\ResponseInterface;
-use GuzzleHttp\Command\Guzzle\GuzzleCommandInterface;
+use GuzzleHttp\Command\CommandInterface;
 
 /**
  * Extracts elements from an XML document into a PHP array.
@@ -21,13 +21,8 @@ class PHPArrayXmlResponseLocation extends AbstractLocation
     /** @var array The flattened XML document being visited */
     private $flatXML = [];
 
-    public function before(
-        GuzzleCommandInterface $command,
-        ResponseInterface $response,
-        Parameter $model,
-        &$result,
-        array $context = []
-    ) {
+    public function before(CommandInterface $command, ResponseInterface $response, Parameter $model, &$result, Array $context = [])
+    {
         $body = $this->stripBom($response->getBody());
         $body = preg_replace('/[\x00-\x08\x10\x0B\x0C\x0E-\x19\x7F]|[\x00-\x7F][\x80-\xBF]+|([\xC0\xC1]|[\xF0-\xFF])[\x80-\xBF]*|[\xC2-\xDF]((?![\x80-\xBF])|[\x80-\xBF]{2,})|[\xE0-\xEF](([\x80-\xBF](?![\x80-\xBF]))|(?![\x80-\xBF]{2})|[\x80-\xBF]{3,})/S', ' ', $body);
         $body = preg_replace('/\xE0[\x80-\x9F][\x80-\xBF]|\xED[\xA0-\xBF][\x80-\xBF]/S', ' ', $body);
@@ -35,13 +30,8 @@ class PHPArrayXmlResponseLocation extends AbstractLocation
         $this->flatXML = json_decode(json_encode((array)$simple), 1);
     }
 
-    public function after(
-        GuzzleCommandInterface $command,
-        ResponseInterface $response,
-        Parameter $model,
-        &$result,
-        array $context = []
-    ) {
+    public function after(CommandInterface $command, ResponseInterface $response, Parameter $model, &$result, Array $context = [])
+    {
         // Handle additional, undefined properties
         $additional = $model->getAdditionalProperties();
         if ($additional instanceof Parameter &&
@@ -60,13 +50,8 @@ class PHPArrayXmlResponseLocation extends AbstractLocation
         $this->flatXML = [];
     }
 
-    public function visit(
-        GuzzleCommandInterface $command,
-        ResponseInterface $response,
-        Parameter $param,
-        &$result,
-        array $context = []
-    ) {
+    public function visit(CommandInterface $command, ResponseInterface $response, Parameter $param, &$result, Array $context = [])
+    {
         $name = $param->getName();
         $key = $param->getWireName();
 

@@ -25,7 +25,7 @@ class FestivusEventSubscriber implements SubscriberInterface
 
 	public function eventHandler($event, $name)
 	{
-		Event::fire('festivus.client.'.$name, array($event));
+		Event::fire('festivus.client.'.$name, [$event]);
 	}
 
 }

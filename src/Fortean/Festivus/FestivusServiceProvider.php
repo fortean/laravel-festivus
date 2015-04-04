@@ -18,11 +18,10 @@ class FestivusServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		// Setup the standard package configuration
-		$this->package('fortean/laravel-festivus');
-
-		// Add a specific config namespace pointing at the override config directory
-		$this->app['config']->addNamespace('laravel-festivus-cascade', app_path().'/config/packages/fortean/laravel-festivus');
+		// Publish a demo service description
+		$this->publishes([
+			__DIR__.'/../../config/httpbin.php' => config_path('festivus/httpbin.php'),
+		]);
 	}
 
 	/**
@@ -32,7 +31,8 @@ class FestivusServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app->bindShared('festivus', function($app)
+		// Bind Festivus as a singleton
+		$this->app->singleton('Festivus', function($app)
 		{
 			return new Festivus();
 		});
@@ -45,7 +45,7 @@ class FestivusServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array('festivus');
+		return ['Festivus'];
 	}
 
 }
